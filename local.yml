@@ -11,10 +11,13 @@
         - cmus
         - samba
         - samba-common-bin
+        - openssh-server
   - name: Make my user
     user:
       name: rohitt
       shell: /bin/zsh
       groups: sudoers
       home: /home/rohitt
-
+  - name: Set hostname
+    hostname:
+      name: shoebox
