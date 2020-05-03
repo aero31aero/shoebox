@@ -11,4 +11,10 @@
         - cmus
         - samba
         - samba-common-bin
+  - name: Make my user
+    user:
+      name: rohitt
+      shell: /bin/zsh
+      groups: sudoers
+      home: /home/rohitt
 
