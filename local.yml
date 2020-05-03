@@ -1,5 +1,7 @@
 - hosts: localhost
   become: true
+  vars:
+    dotfiles_dir: "{{ playbook_dir }}/files"
   tasks:
   - name: Install packages
     apt:
@@ -23,8 +25,9 @@
   #     name: shoebox
   - name: Copy git config
     copy:
-      src: files/.gitconfig
+      src: "{{ dotfiles_dir }}/.gitconfig"
       dest: /home/rohitt/.gitconfig
       owner: rohitt
       group: sudo
       mode: 0644
+    become: true
