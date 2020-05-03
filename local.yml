@@ -16,7 +16,7 @@
     user:
       name: rohitt
       shell: /bin/zsh
-      groups: sudoers
+      groups: sudo
       home: /home/rohitt
   - name: Set hostname
     hostname:
