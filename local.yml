@@ -1,14 +1,14 @@
-- hosts: localhost
+- hosts: all
   become: true
   tasks:
   - name: Install packages
-    apt: name={{item}}
-    with_items:
-      - htop
-      - zsh
-      - tmux
-      - rofi
-      - cmus
-      - samba
-      - samba-common-bin
+    apt:
+      pkg:
+        - htop
+        - zsh
+        - tmux
+        - rofi
+        - cmus
+        - samba
+        - samba-common-bin
 
