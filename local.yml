@@ -1,7 +1,8 @@
-- hosts: localhost
+- hosts: shoebox
   become: true
   vars:
     dotfiles_dir: "{{ playbook_dir }}/files"
+    home: "/home/rohitt"
   tasks:
   - name: Install packages
     apt:
@@ -18,11 +19,10 @@
     user:
       name: rohitt
       shell: /bin/zsh
-      groups: sudo
       home: /home/rohitt
-  # - name: Set hostname
-  #   hostname:
-  #     name: shoebox
+  - name: Set hostname
+    hostname:
+      name: shoebox
   - name: Copy git config
     copy:
       src: "{{ dotfiles_dir }}/.gitconfig"
@@ -31,3 +31,13 @@
       group: sudo
       mode: 0644
     become: true
+  - name: Ensure ssh dir exists
+    file: path=/home/rohitt/.ssh state=directory
+  - name: Copy ssh keys
+    copy:
+      src: /root/.ssh/authorized_keys
+      dest: /home/rohitt/.ssh/authorized_keys
+      owner: rohitt
+      group: rohitt
+      mode: 0644
+      remote_src: yes
