@@ -18,6 +18,13 @@
       shell: /bin/zsh
       groups: sudo
       home: /home/rohitt
-  - name: Set hostname
-    hostname:
-      name: shoebox
+  # - name: Set hostname
+  #   hostname:
+  #     name: shoebox
+  - name: Copy git config
+    copy:
+      src: files/.gitconfig
+      dest: /home/rohitt/.gitconfig
+      owner: rohitt
+      group: sudo
+      mode: 0644
